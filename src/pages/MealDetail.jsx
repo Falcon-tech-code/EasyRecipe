@@ -54,78 +54,92 @@ const MealDetail = () => {
     const videoId = getYoutubeVideoId(selectedMeal.strYoutube);
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 pt-20">
+            {/* Back Button */}
             <button
-                onClick={handleBack}
-                className="fixed top-20 left-4 z-40 flex items-center text-gray-600 hover:text-gray-900 transition-colors bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg"
+                onClick={() => navigate(-1)}
+                className="fixed top-20 left-4 z-40 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg hover:bg-white/90 transition-all duration-300 flex items-center gap-2 group"
             >
-                <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                <svg
+                    className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                    />
                 </svg>
-                Back to Recipes
+                Back
             </button>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Image Section */}
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                    <img
-                        src={selectedMeal.strMealThumb}
-                        alt={selectedMeal.strMeal}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Content Section */}
-                <div className="space-y-6">
-                    <h1 className="text-4xl font-bold text-gray-900">{selectedMeal.strMeal}</h1>
-                    <div className="flex items-center space-x-4">
-                        <span className="px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm">
-                            {selectedMeal.strCategory}
-                        </span>
-                        <span className="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm">
-                            {selectedMeal.strArea}
-                        </span>
+            {/* Main Content */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Image Section */}
+                    <div className="rounded-xl overflow-hidden shadow-lg">
+                        <img
+                            src={selectedMeal.strMealThumb}
+                            alt={selectedMeal.strMeal}
+                            className="w-full h-full object-cover"
+                        />
                     </div>
 
-                    <div className="prose max-w-none">
-                        <h2 className="text-2xl font-semibold text-gray-900">Instructions</h2>
-                        <p className="text-gray-700 whitespace-pre-line">{selectedMeal.strInstructions}</p>
-                    </div>
-
-                    {/* Ingredients */}
-                    <div>
-                        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Ingredients</h2>
-                        <ul className="grid grid-cols-2 gap-4">
-                            {Array.from({ length: 20 }, (_, i) => {
-                                const ingredient = selectedMeal[`strIngredient${i + 1}`];
-                                const measure = selectedMeal[`strMeasure${i + 1}`];
-                                return ingredient && measure && (
-                                    <li key={i} className="flex items-center space-x-2">
-                                        <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-                                        <span className="text-gray-700">
-                                            {measure} {ingredient}
-                                        </span>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-
-                    {/* YouTube Video */}
-                    {videoId && (
-                        <div className="mt-8">
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Watch Video</h2>
-                            <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl">
-                                <iframe
-                                    src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-                                    title="Recipe Video"
-                                    className="absolute top-0 left-0 w-full h-full"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
+                    {/* Content Section */}
+                    <div className="space-y-6">
+                        <h1 className="text-4xl font-bold text-gray-900">{selectedMeal.strMeal}</h1>
+                        <div className="flex items-center space-x-4">
+                            <span className="px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm">
+                                {selectedMeal.strCategory}
+                            </span>
+                            <span className="px-4 py-2 bg-gray-100 text-gray-800 rounded-full text-sm">
+                                {selectedMeal.strArea}
+                            </span>
                         </div>
-                    )}
+
+                        <div className="prose max-w-none">
+                            <h2 className="text-2xl font-semibold text-gray-900">Instructions</h2>
+                            <p className="text-gray-700 whitespace-pre-line">{selectedMeal.strInstructions}</p>
+                        </div>
+
+                        {/* Ingredients */}
+                        <div>
+                            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Ingredients</h2>
+                            <ul className="grid grid-cols-2 gap-4">
+                                {Array.from({ length: 20 }, (_, i) => {
+                                    const ingredient = selectedMeal[`strIngredient${i + 1}`];
+                                    const measure = selectedMeal[`strMeasure${i + 1}`];
+                                    return ingredient && measure && (
+                                        <li key={i} className="flex items-center space-x-2">
+                                            <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                                            <span className="text-gray-700">
+                                                {measure} {ingredient}
+                                            </span>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+
+                        {/* YouTube Video */}
+                        {videoId && (
+                            <div className="mt-8">
+                                <h2 className="text-2xl font-semibold text-gray-900 mb-4">Watch Video</h2>
+                                <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl">
+                                    <iframe
+                                        src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                                        title="Recipe Video"
+                                        className="absolute top-0 left-0 w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

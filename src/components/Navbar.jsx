@@ -76,7 +76,7 @@ const Navbar = () => {
                 ></div>
 
                 {/* Menu Panel */}
-                <div className={`fixed inset-y-0 right-0 w-80 bg-white shadow-xl transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className={`fixed inset-y-0 right-0 w-80 bg-white/90 backdrop-blur-md shadow-xl transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                     <div className="flex flex-col h-full">
                         {/* Menu Header */}
                         <div className="p-4 border-b flex justify-between items-center">
@@ -106,7 +106,7 @@ const Navbar = () => {
                                     <button
                                         key={category}
                                         onClick={() => handleCategoryClick(category)}
-                                        className={`block w-full p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all duration-200 text-gray-700 hover:text-gray-900 capitalize transform hover:translate-x-2 ${isMenuOpen ? 'animate-slide-in' : ''
+                                        className={`block w-full p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all duration-200 text-gray-700 hover:text-gray-900 capitalize transform hover:translate-x-2 ${isMenuOpen ? 'animate-slide-in' : ''
                                             }`}
                                         style={{
                                             animationDelay: `${index * 50}ms`
