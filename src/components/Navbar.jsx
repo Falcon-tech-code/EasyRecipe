@@ -166,6 +166,19 @@ const Navbar = () => {
                         {/* Menu Items */}
                         <div className="flex-1 overflow-y-auto">
                             <div className="space-y-2 p-4">
+                                {/* Favorites Link */}
+                                <Link
+                                    to="/favorites"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="block w-full p-4 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-white/80 transition-all duration-200 text-gray-700 hover:text-gray-900 transform hover:translate-x-2 flex items-center gap-2"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
+                                    Favorites
+                                </Link>
+
+                                {/* Categories */}
                                 {categories.map((category, index) => (
                                     <button
                                         key={category}
