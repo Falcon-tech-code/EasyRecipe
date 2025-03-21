@@ -1,3 +1,16 @@
+
+
+![1](https://github.com/user-attachments/assets/a0c2ed3f-0209-43e1-b51e-699f21074467)
+
+![2](https://github.com/user-attachments/assets/bfa72564-f153-4488-8145-925a026f6cd9)
+
+![3](https://github.com/user-attachments/assets/c766037f-7b65-482a-a2af-de589424dbf5)
+
+![4](https://github.com/user-attachments/assets/8ea11b17-3fd9-454f-b2ea-71809be1d426)
+
+
+
+
 # Easy Recipe - Modern Recipe Discovery Platform
 
 ## Project Overview
