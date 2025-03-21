@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMealById, clearSelectedMeal } from '../store/slices/mealSlice';
+import { addToFavorites, removeFromFavorites } from '../store/slices/favoritesSlice';
 
 const MealDetail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { selectedMeal, loading, error } = useSelector((state) => state.meals);
+    const favorites = useSelector(state => state.favorites.favorites);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         dispatch(fetchMealById(id));
@@ -16,8 +19,22 @@ const MealDetail = () => {
         };
     }, [dispatch, id]);
 
+    useEffect(() => {
+        if (selectedMeal) {
+            setIsFavorite(favorites.some(fav => fav.idMeal === selectedMeal.idMeal));
+        }
+    }, [selectedMeal, favorites]);
+
     const handleBack = () => {
         navigate(-1);
+    };
+
+    const handleFavoriteClick = () => {
+        if (isFavorite) {
+            dispatch(removeFromFavorites(selectedMeal.idMeal));
+        } else {
+            dispatch(addToFavorites(selectedMeal));
+        }
     };
 
     if (loading) {
@@ -73,19 +90,43 @@ const MealDetail = () => {
                         d="M15 19l-7-7 7-7"
                     />
                 </svg>
-                Back
+                Back to Recipes
             </button>
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Image Section */}
-                    <div className="rounded-xl overflow-hidden shadow-lg">
+                    <div className="relative group">
                         <img
                             src={selectedMeal.strMealThumb}
                             alt={selectedMeal.strMeal}
-                            className="w-full h-full object-cover"
+                            className="w-full h-[500px] object-cover rounded-2xl shadow-xl transform group-hover:scale-105 transition-transform duration-500"
                         />
+                        <div className="absolute top-4 right-4 flex gap-2">
+                            <button
+                                onClick={handleFavoriteClick}
+                                className={`p-3 rounded-full shadow-lg transition-all duration-300 ${isFavorite
+                                    ? 'bg-red-500 text-white hover:bg-red-600'
+                                    : 'bg-white text-gray-700 hover:bg-orange-50'
+                                    }`}
+                                title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                            >
+                                <svg
+                                    className="w-6 h-6"
+                                    fill={isFavorite ? "currentColor" : "none"}
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* Content Section */}
