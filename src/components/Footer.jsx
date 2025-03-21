@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                     <div className="flex items-center space-x-4">
                         <a
-                            href="https://www.linkedin.com/in/hasan-emre-karabacak/"
+                            href="https://www.linkedin.com/in/hasan-emre-karabacak-10155522a/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
@@ -19,7 +19,7 @@ const Footer = () => {
                             </svg>
                         </a>
                         <a
-                            href="https://github.com/hasanemrekarabacak"
+                            href="https://github.com/Falcon-tech-code"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
