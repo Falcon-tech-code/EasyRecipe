@@ -113,7 +113,7 @@ Make sure you have the following installed on your machine:
 
 ```bash
 git clone https://github.com/Falcon-tech-code/EasyRecipe
-cd apple_website
+cd EasyRecipe
 ```
 
 
