@@ -1,10 +1,26 @@
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Outlet } from 'react-router-dom'
+import { fetchRandomMeals } from './store/slices/mealSlice'
 import './App.css'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
-function App() {
+const App = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchRandomMeals(6));
+    }, [dispatch]);
+
     return (
-        <>
-            <h1 className="bg-red-500 text-white p-4 rounded-lg">Easy Recipe</h1>
-        </>
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col">
+            <Navbar />
+            <div className="flex-grow">
+                <Outlet />
+            </div>
+            <Footer />
+        </div>
     )
 }
 
